@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-import { MenuIcon, SearchIcon, XIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { UserButton, useClerk, useUser } from "@clerk/clerk-react";
+import { MenuIcon, SearchIcon, TicketPlus, XIcon } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { assets } from "../assets/assets";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
+  const { openSignIn } = useClerk();
+  const navigate = useNavigate();
 
   return (
     <div className="fixed top-0 left-0 z-50 flex w-full items-center justify-between px-6 py-5 md:px-16 lg:px-36">
@@ -20,27 +24,51 @@ const Navbar = () => {
       >
         <XIcon
           className="absolute top-6 right-6 size-6 cursor-pointer md:hidden"
-          onClick={() => !isOpen}
+          onClick={() => setIsOpen(false)}
         />
         <Link
           to="/"
           className=""
           onClick={() => {
-            scroll(0, 0);
+            scroll(0, 0), setIsOpen(false);
           }}
         >
           Home
         </Link>
-        <Link to="/movies" className="">
+        <Link
+          to="/movies"
+          className=""
+          onClick={() => {
+            scroll(0, 0), setIsOpen(false);
+          }}
+        >
           Movies
         </Link>
-        <Link to="/" className="">
+        <Link
+          to="/"
+          className=""
+          onClick={() => {
+            scroll(0, 0), setIsOpen(false);
+          }}
+        >
           Theaters
         </Link>
-        <Link to="/" className="">
+        <Link
+          to="/"
+          className=""
+          onClick={() => {
+            scroll(0, 0), setIsOpen(false);
+          }}
+        >
           Releases
         </Link>
-        <Link to="/favorite" className="">
+        <Link
+          to="/favorite"
+          className=""
+          onClick={() => {
+            scroll(0, 0), setIsOpen(false);
+          }}
+        >
           Favorites
         </Link>
       </div>
@@ -49,12 +77,30 @@ const Navbar = () => {
         {/* Search Icon */}
         <SearchIcon className="h-6 w-6 cursor-pointer max-md:hidden" />
         {/* Button  */}
-        <button className="bg-primary hover:bg-primary-dull rounded-full px-4 py-1 font-medium transition sm:px-7 sm:py-2">
-          Login
-        </button>
+        {!user ? (
+          <button
+            className="bg-primary hover:bg-primary-dull rounded-full px-4 py-1 font-medium transition sm:px-7 sm:py-2"
+            onClick={openSignIn}
+          >
+            Login
+          </button>
+        ) : (
+          <UserButton>
+            <UserButton.MenuItems>
+              <UserButton.Action
+                label="My Bookings"
+                labelIcon={<TicketPlus width={15} />}
+                onClick={() => navigate("/my-bookings")}
+              />
+            </UserButton.MenuItems>
+          </UserButton>
+        )}
       </div>
       {/* MENU MOBILE ICON */}
-      <MenuIcon className="h-8 w-8 cursor-pointer max-md:ml-4 md:hidden" />
+      <MenuIcon
+        className="h-8 w-8 cursor-pointer max-md:ml-4 md:hidden"
+        onClick={() => setIsOpen(!isOpen)}
+      />
     </div>
   );
 };
