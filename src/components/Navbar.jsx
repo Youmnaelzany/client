@@ -4,7 +4,7 @@ import { UserButton, useClerk, useUser } from "@clerk/clerk-react";
 import { MenuIcon, SearchIcon, TicketPlus, XIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { assets } from "../../public/assets/assets";
+import { assets } from "../assets/assets";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +75,7 @@ const Navbar = () => {
       {/* USER LOGIN BUTTON & SEARCH ICON */}
       <div className="flex items-center gap-8">
         {/* Search Icon */}
-        <SearchIcon className="h-6 w-6 cursor-pointer max-md:hidden" />
+        <SearchIcon className="size-6 cursor-pointer max-md:hidden" />
         {/* Button  */}
         {!user ? (
           <button
@@ -98,7 +98,7 @@ const Navbar = () => {
       </div>
       {/* MENU MOBILE ICON */}
       <MenuIcon
-        className="h-8 w-8 cursor-pointer max-md:ml-4 md:hidden"
+        className="size-8 cursor-pointer max-md:ml-4 md:hidden"
         onClick={() => setIsOpen(!isOpen)}
       />
     </div>
