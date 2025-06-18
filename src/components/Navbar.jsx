@@ -30,7 +30,8 @@ const Navbar = () => {
           to="/"
           className=""
           onClick={() => {
-            scroll(0, 0), setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
         >
           Home
@@ -39,7 +40,8 @@ const Navbar = () => {
           to="/movies"
           className=""
           onClick={() => {
-            scroll(0, 0), setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
         >
           Movies
@@ -48,7 +50,8 @@ const Navbar = () => {
           to="/"
           className=""
           onClick={() => {
-            scroll(0, 0), setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
         >
           Theaters
@@ -57,7 +60,8 @@ const Navbar = () => {
           to="/"
           className=""
           onClick={() => {
-            scroll(0, 0), setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
         >
           Releases
@@ -66,7 +70,8 @@ const Navbar = () => {
           to="/favorite"
           className=""
           onClick={() => {
-            scroll(0, 0), setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
         >
           Favorites
